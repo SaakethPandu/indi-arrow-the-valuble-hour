@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber-Themed Game Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #0d0d0d;
+            color: #00ffcc;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        header h1 {
+            font-size: 48px;
+            animation: glitch 1.5s infinite;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px #ff00ff; }
+            50% { text-shadow: -2px -2px #00ffff; }
+            100% { text-shadow: 2px 2px #ff00ff; }
+        }
+        .play-button, .download-button {
+            width: 250px;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 20px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .play-button {
+            background-color: #00ffcc;
+            color: #0d0d0d;
+            box-shadow: 0 4px 15px rgba(0, 255, 204, 0.5);
+            margin-bottom: 20px;
+        }
+        .play-button:hover {
+            background-color: #009988;
+            transform: scale(1.05);
+        }
+        .download-button {
+            display: none;
+            background-color: #ff00ff;
+            color: #0d0d0d;
+        }
+        .download-button.visible {
+            display: block;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .version-number {
+            display: none;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        nav {
+            margin-bottom: 30px;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #00ffcc;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s;
+        }
+        nav a:hover {
+            border-bottom: 2px solid #00ffcc;
+        }
+    </style>
+    <script>
+        function showDownloadButton() {
+            const playButton = document.querySelector('.play-button');
+            const downloadButton = document.getElementById('downloadButton');
+            const versionNumber = document.querySelector('.version-number');
+
+            playButton.style.display = 'none'; // Hide the play button
+            versionNumber.style.display = 'block'; // Show the version number
+            downloadButton.classList.add('visible'); // Show the download button
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Cyber Game Hub</h1>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#downloads">Download Versions</a>
+    </nav>
+    <button class="play-button" onclick="showDownloadButton()">Play Now</button>
+    <div class="version-number">Version 1.0</div>
+    <button id="downloadButton" class="download-button" onclick="window.location.href='download-link.zip'">Download</button>
+</body>
+</html>
