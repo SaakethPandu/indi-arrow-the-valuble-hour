@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyber-Themed Game Page</title>
     <style>
@@ -57,9 +57,10 @@
             display: none;
             background-color: #ff00ff;
             color: #0d0d0d;
+            text-decoration: none;
         }
         .download-button.visible {
-            display: block;
+            display: inline-block;
             animation: fadeIn 1s ease-in-out;
         }
         .version-number {
@@ -88,7 +89,7 @@
     <script>
         function showDownloadButton() {
             const playButton = document.querySelector('.play-button');
-            const downloadButton = document.getElementById('downloadButton');
+            const downloadButton = document.querySelector('.download-button');
             const versionNumber = document.querySelector('.version-number');
 
             playButton.style.display = 'none'; // Hide the play button
@@ -103,11 +104,10 @@
     </header>
     <nav>
         <a href="#home">Home</a>
-        <a href="#about">About</a>
         <a href="#downloads">Download Versions</a>
     </nav>
     <button class="play-button" onclick="showDownloadButton()">Play Now</button>
     <div class="version-number">Version 1.0</div>
-    <button id="downloadButton" class="download-button" onclick="window.location.href='download-link.zip'">Download</button>
+    <a href="Valuable Hour (Multiplayer platformer arrow fight)-1_0_0-windows.exe" download class="download-button">Download</a>
 </body>
 </html>
