@@ -2,18 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>valueable Hour</title>
+    <title>Valuable Hour</title>
     <style>
-       
         body {
             margin: 0;
             background-color: #0d0d0d;
             padding: 0;
             font-family: 'Courier New', Courier, monospace;
-            background-repeat: no-repeat;
-            background-size: auto;
             color: #00ffcc;
             overflow: hidden;
             display: flex;
@@ -84,13 +81,23 @@
             color: #00ffcc;
             border-bottom: 2px solid transparent;
             transition: border-bottom 0.3s;
+            cursor: pointer;
         }
-        nav a:hover {
+        nav a:hover, nav a.active {
             border-bottom: 2px solid #00ffcc;
         }
-        .platform_img{
+        .platform_img {
             height: 30px;
-            width:30px;
+            width: 30px;
+        }
+        .tab-content {
+            display: none;
+            text-align: center;
+            font-size: 20px;
+            padding: 20px;
+        }
+        .tab-content.active {
+            display: block;
         }
     </style>
     
@@ -99,52 +106,86 @@
             const playButton = document.querySelector('.play-button');
             const downloadButton = document.querySelector('.download-button');
             const versionNumber = document.querySelector('.version-number');
+            
+            playButton.style.display = 'none';
+            versionNumber.style.display = 'block';
+            downloadButton.classList.add('visible');
+        }
 
-            playButton.style.display = 'none'; // Hide the play button
-            versionNumber.style.display = 'block'; // Show the version number
-            downloadButton.classList.add('visible'); // Show the download button
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`nav a[href="#${tabId}"]`).classList.add('active');
         }
     </script>
-    
 </head>
 <body>
-    
     <header>
-        <h1>indi arrow:valuable Hour</h1>
+        <h1>Valuable Hour</h1>
     </header>
-    <img class="platform_img" src="image.png" alt="">
-    <div class="avilable_platforms">avilable platforms</div>
     
-    <button class="play-button" onclick="showDownloadButton()">Play Now</button>
-    <div class="version-number">Version 1.0</div>
-   
+    <nav>
+        <a href="#home" onclick="showTab('home')">Home</a>
+        <a href="#updates" onclick="showTab('updates')">Updates</a>
+        <a href="#update-log" onclick="showTab('update-log')">Update Log</a>
+    </nav>
+
+    <div id="home" class="tab-content active">
+        <img class="platform_img" src="image.png" alt="Platform Image">
+        <div class="available_platforms">Available Platforms</div>
+        
+        <button class="play-button" onclick="showDownloadButton()">Play Now</button>
        
+        <div class="version-number">Version 1.1(Beta)</div>
+        
+        <a href="https://www.mediafire.com/file/57fg8f5xabsswpe/valuable_hour-1_1_1-windows.exe/file" download class="download-button">Download</a>
+        <div>Latest Version</div>
+    </div>
     
-    <a href="https://www.mediafire.com/file/8hbe0osxac739hv/Valuable+Hour+(Multiplayer+platformer+arrow+fight)-1_0_0-windows.exe/file" download class="download-button">Download</a>
+    <div id="updates" class="tab-content">
+        <h2>Latest Updates</h2>
+        <p>Here are the latest updates to the game. Stay tuned for more exciting features!</p>
+        <h3>Past Updated Date:</h3>
+        <ul>
+            <li><strong>Version 1.0 (Beta)</strong>: Released on november 5, 2024 - Initial game launch with basic shooting mechanics.</li>
+            <li><strong>Version 1.1 (Beta)</strong>: Released on november 8, 2024 - Added camera movement and upgraded map.</li>
+        </ul>
+
+        <h3>Future Expected Update:</h3>
+        <p><strong>Version 1.2</strong>: Expected in november 13 2024 - working on it.</p>
+    </div>
     
+    <div id="update-log" class="tab-content">
+        <h2>Update Log</h2>
+        <div><strong>Version 1.0 (Beta)</strong></div>
+        <a href="https://www.mediafire.com/file/8hbe0osxac739hv/Valuable_Hour_%2528Multiplayer_platformer_arrow_fight%2529-1_0_0-windows.exe/file">Download Version 1.0</a>
+        
+        <div><strong>Version 1.1 (Beta)</strong></div>
+        <a href="https://www.mediafire.com/file/57fg8f5xabsswpe/valuable_hour-1_1_1-windows.exe/file">Download Version 1.1</a>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+      
+        const firebaseConfig = {
+            apiKey: "AIzaSyA2U5_XnOBD2jtVxbA0WcvWtzLswtR0tcM",
+            authDomain: "indi-arrow.firebaseapp.com",
+            projectId: "indi-arrow",
+            storageBucket: "indi-arrow.firebasestorage.app",
+            messagingSenderId: "637627420090",
+            appId: "1:637627420090:web:b20c2b20cc98e2a4b1e183",
+            measurementId: "G-2VG2HBG94G"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
 </body>
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyA2U5_XnOBD2jtVxbA0WcvWtzLswtR0tcM",
-      authDomain: "indi-arrow.firebaseapp.com",
-      projectId: "indi-arrow",
-      storageBucket: "indi-arrow.firebasestorage.app",
-      messagingSenderId: "637627420090",
-      appId: "1:637627420090:web:b20c2b20cc98e2a4b1e183",
-      measurementId: "G-2VG2HBG94G"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-  </script>
-  
 </html>
