@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valuable Hour</title>
+    <style>
+        body {
+            margin: 0;
+            background-image: url(/background_image.jpg);
+            background-size: cover;
+            background-position: center;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: rgb(255, 255, 255);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            background-color: rgba(20, 20, 20, 0.766); /* Semi-transparent background */
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        header h1 {
+            font-size: 48px;
+            animation: glitch 1.5s infinite;
+            color: #00fba3;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px #ff00ff; }
+            50% { text-shadow: -2px -2px black; }
+            100% { text-shadow: 2px 2px #ff00ff; }
+        }
+
+        .container, .tab-content, nav, .available_platforms {
+            background-color: rgba(0, 0, 0, 0.53); /* Semi-transparent background for content */
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .play-button, .download-button {
+            width: 250px;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 20px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .play-button {
+            background-color: #00ffcc;
+            color: #0d0d0d;
+            box-shadow: 0 4px 15px rgba(0, 255, 204, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .play-button:hover {
+            background-color: #009988;
+            transform: scale(1.05);
+        }
+
+        .download-button {
+            display: none;
+            background-color: #ff00ff;
+            color: #0d0d0d;
+            text-decoration: none;
+        }
+
+        .download-button.visible {
+            display: inline-block;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .version-number {
+            display: none;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        nav {
+            margin-bottom: 30px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #00ffcc;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            border-bottom: 2px solid #00ffcc;
+        }
+
+        .platform_img {
+            height: 30px;
+            width: 30px;
+        }
+
+        .tab-content {
+            display: none;
+            text-align: center;
+            font-size: 20px;
+            padding: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+
+    <script>
+        function showDownloadButton() {
+            const playButton = document.querySelector('.play-button');
+            const downloadButton = document.querySelector('.download-button');
+            const versionNumber = document.querySelector('.version-number');
+            
+            playButton.style.display = 'none';
+            versionNumber.style.display = 'block';
+            downloadButton.classList.add('visible');
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`nav a[href="#${tabId}"]`).classList.add('active');
+        }
+    </script>
+</head>
+<body>
+<div class="container">   
+    <header>
+        <h1>Valuable Hour</h1>
+    </header>
+    
+    <nav>
+        <a href="#home" onclick="showTab('home')">Home</a>
+        <a href="#updates" onclick="showTab('updates')">Updates</a>
+        <a href="#update-log" onclick="showTab('update-log')">Update Log</a>
+    </nav>
+
+    <div id="home" class="tab-content active">
+        <img class="platform_img" src="image.png" alt="Platform Image">
+        <div class="available_platforms">Available Platforms</div>
+        
+        <button class="play-button" onclick="showDownloadButton()">Play Now</button>
+       
+        <div class="version-number">Version 1.3(Beta)</div>
+        
+        <a href="https://drive.usercontent.google.com/download?id=1TPcG4ThLphNtufVqIA2JyaWpyQ-iZzog&export=download&authuser=1&confirm=t&uuid=1fd14939-8f3a-43b8-8704-e177aa4cbf78&at=AENtkXZfUuLjz-SSJjFIFV3zr9vN:1731316416440" download class="download-button">Download</a>
+        <div>Latest Version</div>
+        <div>Download the launcher to stay updated</div>
+        <a href="https://drive.usercontent.google.com/download?id=1RnzpeJUW-fszvzX_YoIqm6frwAslObEG&export=download&authuser=1&confirm=t&uuid=863c1180-5891-4c4b-a0c8-972feb2de7c6&at=AENtkXYsoZIpmlQBaLhAtRFAOLjg:1731318946560">Click here</a>
+    </div>
+    
+    <div id="updates" class="tab-content">
+        <h2>Latest Updates</h2>
+        <p>Here are the latest updates to the game. Stay tuned for more exciting features!</p>
+        <h3>Past Updated Date:</h3>
+        <ul>
+            <li><strong>Version 1.0 (Beta)</strong>: Released on November 5, 2024 - Initial game launch with basic shooting mechanics.</li>
+            <li><strong>Version 1.1 (Beta)</strong>: Released on November 8, 2024 - Added camera movement and upgraded map.</li>
+            <li><strong>Version 1.2 (Beta)</strong>: Released on November 10, 2024 - Security updates</li>
+            <li><strong>Version 1.3 (Beta)</strong>: Released on November 11, 2024 - Updated start menu and map for extended gameplay.</li>
+        </ul>
+
+        <h3>Future Expected Update:</h3>
+        <p><strong>Version 1.4</strong>: Expected November 16, 2024 - Work in progress.</p>
+    </div>
+    
+    <div id="update-log" class="tab-content">
+        <h2>Update Log</h2>
+        <div><strong>Version 1.0 (Beta)</strong></div>
+        <a href="https://www.mediafire.com/file/8hbe0osxac739hv/Valuable_Hour_%2528Multiplayer_platformer_arrow_fight%2529-1_0_0-windows.exe/file">Download Version 1.0</a>
+        
+        <div><strong>Version 1.1 (Beta)</strong></div>
+        <a href="https://www.mediafire.com/file/57fg8f5xabsswpe/valuable_hour-1_1_1-windows.exe/file">Download Version 1.1</a>
+
+        <div><strong>Version 1.2 (Beta)</strong></div>
+        <a href="https://drive.usercontent.google.com/download?id=1sgMOE7TlsRnhpJcd2joeYfaejzfpyt5Q&export=download&authuser=1&confirm=t&uuid=ec45c65a-85f8-43ec-b677-972f294fc799&at=AENtkXarrHht01oz7wl178Gh_UPW:1731217167765">Download Version 1.2</a>
+        
+        <div><strong>Version 1.3 (Beta)</strong></div>
+        <a href="https://drive.usercontent.google.com/download?id=1TPcG4ThLphNtufVqIA2JyaWpyQ-iZzog&export=download&authuser=1&confirm=t&uuid=1fd14939-8f3a-43b8-8704-e177aa4cbf78&at=AENtkXZfUuLjz-SSJjFIFV3zr9vN:1731316416440" download>Download Version 1.3</a>
+    </div>
+</div>
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCLbT0RL5iUg-P2vcY_p51Y6EekL-DKMs8",
+      authDomain: "valuable-hour-1ce5a.firebaseapp.com",
+      projectId: "valuable-hour-1ce5a",
+      storageBucket: "valuable-hour-1ce5a.firebasestorage.app",
+      messagingSenderId: "351052416918",
+      appId: "1:351052416918:web:61472956d0bab3bd513fb7",
+      measurementId: "G-LD4W8MS7JK"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+</html>
